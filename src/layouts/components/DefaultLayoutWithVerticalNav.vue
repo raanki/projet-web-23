@@ -84,6 +84,25 @@ const upgradeBanner = computed(() => {
         }"
       />
 
+      <VerticalNavLink
+        :item="{
+          title: 'Students',
+          icon: 'fa-solid fa-graduation-cap',
+          to: '/student',
+          isFontAwesome: true,
+        }"
+      />
+
+      <VerticalNavLink
+        :item="{
+          title: 'Admin',
+          icon: 'fa-solid fa-user',
+          to: '/admin',
+          isFontAwesome: true,
+        }"
+      />
+
+
 <!--      &lt;!&ndash; 👉 Pages &ndash;&gt;-->
 <!--      <VerticalNavSectionTitle-->
 <!--        :item="{-->
@@ -112,19 +131,6 @@ const upgradeBanner = computed(() => {
 <!--        }"-->
 <!--      />-->
 
-      <!-- 👉 User Interface -->
-      <VerticalNavSectionTitle
-        :item="{
-          heading: 'User Interface',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Form Layouts',
-          icon: 'mdi-form-select',
-          to: '/form-layouts',
-        }"
-      />
     </template>
 
     <!-- 👉 Pages -->

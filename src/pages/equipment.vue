@@ -72,7 +72,7 @@ const fields = [
 <template>
 
   <div class="row text-end" style="margin: 30px">
-    <router-link to="/create-equipment" class="btn text-end add">Add an equipment</router-link>
+    <router-link to="/equipment/create" class="btn text-end add">Add an equipment</router-link>
   </div>
 
 

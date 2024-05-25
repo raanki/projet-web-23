@@ -39,7 +39,7 @@ const fields = [
 
 
     <div class="row text-end" style="margin: 30px">
-      <router-link to="/create-loan" class="btn text-end add">Add a loan</router-link>
+      <router-link to="/loan/create" class="btn text-end add">Add a loan</router-link>
     </div>
 
 
