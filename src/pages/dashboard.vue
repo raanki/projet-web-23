@@ -10,6 +10,9 @@ import AnalyticsTransactions from '@/views/dashboard/AnalyticsTransactions.vue'
 import chart from '@images/cards/chart-success.png'
 import card from '@images/cards/credit-card-primary.png'
 import paypal from '@images/cards/paypal-error.png'
+import student from '@images/cards/school.png'
+import late from '@images/cards/late.png'
+import week_loans from '@images/cards/7-days.png'
 import wallet from '@images/cards/wallet-info.png'
 </script>
 
@@ -51,7 +54,7 @@ import wallet from '@images/cards/wallet-info.png'
           <CardStatisticsVertical
             v-bind="{
               title: 'Week\'s Loans',
-              image: wallet,
+              image: week_loans,
               stats: '3',
               change: null,
             }"
@@ -86,7 +89,7 @@ import wallet from '@images/cards/wallet-info.png'
           <CardStatisticsVertical
             v-bind=" {
               title: 'Students',
-              image: paypal,
+              image: student,
               stats: '25',
               change: null,
             }"
@@ -101,7 +104,7 @@ import wallet from '@images/cards/wallet-info.png'
           <CardStatisticsVertical
             v-bind="{
               title: 'Late Loans',
-              image: card,
+              image: late,
               stats: '0',
               change: null,
             }"
