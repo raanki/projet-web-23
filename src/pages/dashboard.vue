@@ -28,14 +28,14 @@ import wallet from '@images/cards/wallet-info.png'
       sm="4"
     >
       <VRow>
-        <!-- 👉 Profit -->
+        <!-- 👉 Equipement -->
         <VCol
           cols="12"
           md="6"
         >
           <CardStatisticsVertical
             v-bind="{
-              title: 'Equipement',
+              title: 'Total Equipement',
               image: chart,
               stats: '7',
               change:  null,
@@ -43,14 +43,14 @@ import wallet from '@images/cards/wallet-info.png'
           />
         </VCol>
 
-        <!-- 👉 Sales -->
+        <!-- 👉 Loan Weekly -->
         <VCol
           cols="12"
           md="6"
         >
           <CardStatisticsVertical
             v-bind="{
-              title: 'Loan',
+              title: 'Week\'s Loans',
               image: wallet,
               stats: '3',
               change: null,
@@ -100,7 +100,7 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind="{
-              title: 'Late loan',
+              title: 'Late Loans',
               image: card,
               stats: '0',
               change: null,
@@ -118,7 +118,7 @@ import wallet from '@images/cards/wallet-info.png'
 
     </VCol>
 
-    <!-- 👉 Order Statistics -->
+    <!-- 👉 Loan Statistics -->
     <VCol
       cols="12"
       md="4"

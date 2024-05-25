@@ -5,12 +5,9 @@ import { hexToRgb } from '@layouts/utils'
 
 const vuetifyTheme = useTheme()
 
-const series = [
-  45,
-  80,
-  20,
-  40,
-]
+const series = [120, 95, 75, 50];  // Update with actual loan data counts
+
+
 
 const chartOptions = computed(() => {
   const currentTheme = vuetifyTheme.current.value.colors
@@ -30,12 +27,7 @@ const chartOptions = computed(() => {
     legend: { show: false },
     tooltip: { enabled: false },
     dataLabels: { enabled: false },
-    labels: [
-      'Fashion',
-      'Electronic',
-      'Sports',
-      'Decor',
-    ],
+    labels: ['Laptops', 'Projectors', 'Cameras', 'Microphones'],
     colors: [
       currentTheme.success,
       currentTheme.primary,
@@ -86,36 +78,37 @@ const chartOptions = computed(() => {
   }
 })
 
-const orders = [
+const loans = [
   {
-    amount: '82.5k',
-    title: 'Electronic',
+    amount: '120',
+    title: 'Laptops',
     avatarColor: 'primary',
-    subtitle: 'Mobile, Earbuds, TV',
-    avatarIcon: 'bx-mobile-alt',
+    subtitle: 'Most borrowed item',
+    avatarIcon: 'bx-laptop',
   },
   {
-    amount: '23.8k',
-    title: 'Fashion',
+    amount: '95',
+    title: 'Projectors',
     avatarColor: 'success',
-    subtitle: 'Tshirt, Jeans, Shoes',
-    avatarIcon: 'bx-closet',
+    subtitle: 'High demand in presentations',
+    avatarRepeatIcon: 'bx-projector',
   },
   {
-    amount: 849,
-    title: 'Decor',
+    amount: '75',
+    title: 'Cameras',
     avatarColor: 'info',
-    subtitle: 'Fine Art, Dining',
-    avatarIcon: 'bx-home',
+    subtitle: 'Popular for media students',
+    avatarIcon: 'bx-camera',
   },
   {
-    amount: 99,
-    title: 'Sports',
+    amount: '50',
+    title: 'Microphones',
     avatarColor: 'secondary',
-    subtitle: 'Football, Cricket Kit',
-    avatarIcon: 'bx-football',
+    subtitle: 'Essential for digital arts',
+    avatarIcon: 'bx-microphone',
   },
 ]
+
 
 const moreList = [
   {
@@ -137,9 +130,8 @@ const moreList = [
   <VCard>
     <VCardItem class="pb-3">
       <VCardTitle class="mb-1">
-        Order Statistics
+        Most Popular Equipment Loans
       </VCardTitle>
-      <VCardSubtitle>42.82k Total Sales</VCardSubtitle>
 
       <template #append>
         <div class="me-n3 mt-n8">
@@ -152,9 +144,9 @@ const moreList = [
       <div class="d-flex align-center justify-space-between mb-3">
         <div class="flex-grow-1">
           <h4 class="text-h4 mb-1">
-            8,258
+            {{ totalLoans }} 35
           </h4>
-          <span>Total Orders</span>
+          <span>Total Loans</span>
         </div>
 
         <div>
@@ -170,34 +162,35 @@ const moreList = [
 
       <VList class="card-list mt-7">
         <VListItem
-          v-for="order in orders"
-          :key="order.title"
+          v-for="loan in loans"
+          :key="loan.title"
         >
           <template #prepend>
             <VAvatar
               rounded
               variant="tonal"
-              :color="order.avatarColor"
+              :color="loan.avatarColor"
             >
-              <VIcon :icon="order.avatarIcon" />
+              <VIcon :icon="loan.avatarIcon" />
             </VAvatar>
           </template>
 
           <VListItemTitle class="mb-1">
-            {{ order.title }}
+            {{ loan.title }}
           </VListItemTitle>
           <VListItemSubtitle class="text-disabled">
-            {{ order.subtitle }}
+            {{ loan.subtitle }}
           </VListItemSubtitle>
 
           <template #append>
-            <span>{{ order.amount }}</span>
+            <span>{{ loan.amount }}</span>
           </template>
         </VListItem>
       </VList>
     </VCardText>
   </VCard>
 </template>
+
 
 <style lang="scss" scoped>
 .card-list {
