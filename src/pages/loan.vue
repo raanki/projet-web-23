@@ -36,6 +36,6 @@ const fields = [
 
 <template>
   <div>
-    <custom-list :items="loans" :fields="fields" :title="'Equipement'" />
+    <custom-list :items="loans" :fields="fields" :title="'Loan'" />
   </div>
 </template>
