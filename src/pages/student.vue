@@ -1,37 +1,57 @@
 <script setup>
 import CustomList from '@/components/custom-list.vue'
 
-const loans = [
+const students = [
   {
-    id: '123',
-    start_date: '2023-01-01',
-    expect_end_date: '2023-12-31',
-    commentary: 'Long term loan for project X',
-    status: 'Active'
+    mail: 'alice@example.com',
+    student_number: 'S1001',
+    firstname: 'Alice',
+    lastname: 'Johnson',
+    address: '123 Cherry Lane, New York, NY',
+    phone: '555-0100',
   },
   {
-    id: '124',
-    start_date: '2023-02-15',
-    expect_end_date: '2023-08-15',
-    commentary: 'Short term loan for project Y',
-    status: 'Completed'
+    mail: 'bob@example.com',
+    student_number: 'S1002',
+    firstname: 'Bob',
+    lastname: 'Smith',
+    address: '456 Maple Street, San Francisco, CA',
+    phone: '555-0200',
   },
   {
-    id: '125',
-    start_date: '2023-03-20',
-    expect_end_date: '2023-09-20',
-    commentary: 'Medium term loan for project Z',
-    status: 'In Progress'
+    mail: 'carol@example.com',
+    student_number: 'S1003',
+    firstname: 'Carol',
+    lastname: 'White',
+    address: '789 Oak Avenue, Chicago, IL',
+    phone: '555-0300',
+  },
+  {
+    mail: 'dave@example.com',
+    student_number: 'S1004',
+    firstname: 'Dave',
+    lastname: 'Brown',
+    address: '321 Pine Road, Miami, FL',
+    phone: '555-0400',
+  },
+  {
+    mail: 'eva@example.com',
+    student_number: 'S1005',
+    firstname: 'Eva',
+    lastname: 'Davis',
+    address: '654 Elm Street, Seattle, WA',
+    phone: '555-0500',
   }
 ];
 
 
 const fields = [
-  { model: '', key: 'id', label: 'Id', placeholder: 'Enter ID', type: 'text' },
-  { model: '', key: 'start_date', label: 'Start Date', placeholder: 'YYYY-MM-DD', type: 'date' },
-  { model: '', key: 'expect_end_date', label: 'End Date', placeholder: 'YYYY-MM-DD', type: 'date' },
-  { model: '', key: 'commentary', label: 'Commentary', placeholder: 'Enter commentary', type: 'textarea' },
-  { model: '', key: 'status', label: 'Status', placeholder: 'Select status', type: 'select', options: ['Active', 'Completed', 'In Progress'] }
+  { model: '', key: 'mail', label: 'Mail', },
+  { model: '', key: 'student_number', label: 'Student Number'},
+  { model: '', key: 'firstname', label: 'Firstname'},
+  { model: '', key: 'lastname', label: 'Lastname' },
+  { model: '', key: 'address', label: 'Address', },
+  { model: '', key: 'phone', label: 'Phone', },
 ];
 </script>
 
@@ -39,12 +59,12 @@ const fields = [
 
 
   <div class="row text-end" style="margin: 30px">
-    <router-link to="/loan/create" class="btn text-end add">Add a loan</router-link>
+    <router-link to="/loan/create" class="btn text-end add">Add a student</router-link>
   </div>
 
 
   <div class="row">
-    <custom-list :items="loans" :fields="fields" :title="'Loan'" />
+    <custom-list :items="students" :fields="fields" :title="'Student'" />
   </div>
 
 </template>
