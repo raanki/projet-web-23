@@ -52,12 +52,12 @@ const fields = [
 
 
   <div class="row text-end" style="margin: 30px">
-    <router-link to="/loan/create" class="btn text-end add">Add an admin</router-link>
+    <router-link to="/loan/create" class="btn text-end add">Add an admin ➕</router-link>
   </div>
 
 
   <div class="row">
-    <custom-list :items="admins" :fields="fields" :title="'Admin'" />
+    <custom-list :items="admins" :fields="fields" :title="'Admin 🧑‍⚖️'" />
   </div>
 
 </template>

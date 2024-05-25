@@ -72,12 +72,12 @@ const fields = [
 <template>
 
   <div class="row text-end" style="margin: 30px">
-    <router-link to="/equipment/create" class="btn text-end add">Add an equipment</router-link>
+    <router-link to="/equipment/create" class="btn text-end add">Add an equipment ➕</router-link>
   </div>
 
 
   <div>
-    <custom-list :items="equipment" :fields="fields" :title="'Equipement'" />
+    <custom-list :items="equipment" :fields="fields" :title="'Equipement 🖥️'" />
   </div>
 </template>
 

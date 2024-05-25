@@ -59,12 +59,12 @@ const fields = [
 
 
   <div class="row text-end" style="margin: 30px">
-    <router-link to="/loan/create" class="btn text-end add">Add a student</router-link>
+    <router-link to="/loan/create" class="btn text-end add">Add a student ➕</router-link>
   </div>
 
 
   <div class="row">
-    <custom-list :items="students" :fields="fields" :title="'Student'" />
+    <custom-list :items="students" :fields="fields" :title="'Student 👨‍🎓'" />
   </div>
 
 </template>
