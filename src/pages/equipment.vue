@@ -3,6 +3,7 @@ import CustomList from '@/components/custom-list.vue'
 
 const equipment = [
   {
+    id: 1,
     name: 'Laptop HP ProBook',
     description: 'Laptop professionnel 15 pouces',
     purchaseDate: '2023-01-15',
@@ -12,6 +13,7 @@ const equipment = [
     availability: 'Available',
   },
   {
+    id: 2,
     name: 'Projector Sony XZ2',
     description: 'Full HD projector 1080p',
     purchaseDate: '2023-02-20',
@@ -21,6 +23,7 @@ const equipment = [
     availability: 'Unavailable',
   },
   {
+    id: 3,
     name: 'Laptop HP ProBook',
     description: 'Laptop professionnel 15 pouces',
     purchaseDate: '2023-01-15',
@@ -30,6 +33,7 @@ const equipment = [
     availability: 'Available',
   },
   {
+    id: 4,
     name: 'Projector Sony XZ2',
     description: 'Full HD projector 1080p',
     purchaseDate: '2023-02-20',
@@ -39,6 +43,7 @@ const equipment = [
     availability: 'Unavailable',
   },
   {
+    id: 5,
     name: 'Laptop HP ProBook',
     description: 'Laptop professionnel 15 pouces',
     purchaseDate: '2023-01-15',
@@ -48,6 +53,7 @@ const equipment = [
     availability: 'Available',
   },
   {
+    id: 6,
     name: 'Projector Sony XZ2',
     description: 'Full HD projector 1080p',
     purchaseDate: '2023-02-20',
@@ -77,7 +83,7 @@ const fields = [
 
 
   <div>
-    <custom-list :items="equipment" :fields="fields" :title="'Equipement 🖥️'" />
+    <custom-list :items="equipment" :fields="fields" :title="'Equipement 🖥️'" :type="'equipment'"/>
   </div>
 </template>
 

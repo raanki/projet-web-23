@@ -49,12 +49,43 @@ const router = createRouter({
           component: () => import('../pages/create-loan.vue'),
         },
         {
+          path: 'loan/see/:id',
+          component: () => import('../pages/create-loan.vue'),
+          props: route => ({ action: 'view', id: route.params.id }),
+        },
+        {
+          path: 'loan/edit/:id',
+          component: () => import('../pages/create-loan.vue'),
+          props: route => ({ action: 'edit', id: route.params.id }),
+        },
+        {
           path: 'equipment/create',
           component: () => import('../pages/create-equipment.vue'),
+          props: { action: 'create' },
+        },
+        {
+          path: 'equipment/edit/:id',
+          component: () => import('../pages/create-equipment.vue'),
+          props: route => ({ action: 'edit', id: route.params.id }),
+        },
+        {
+          path: 'equipment/see/:id',
+          component: () => import('../pages/create-equipment.vue'),
+          props: route => ({ action: 'view', id: route.params.id }),
         },
         {
           path: 'student',
           component: () => import('../pages/student.vue'),
+        },
+        {
+          path: 'student/see/:id',
+          component: () => import('../pages/create-user.vue'),
+          props: route => ({ action: 'view', id: route.params.id }),
+        },
+        {
+          path: 'student/edit/:id',
+          component: () => import('../pages/create-user.vue'),
+          props: route => ({ action: 'view', id: route.params.id }),
         },
         {
           path: 'admin',
@@ -63,6 +94,16 @@ const router = createRouter({
         {
           path: 'user/create',
           component: () => import('../pages/create-user.vue'),
+        },
+        {
+          path: 'user/edit/:id',
+          component: () => import('../pages/create-user.vue'),
+          props: route => ({ action: 'edit', id: route.params.id }),
+        },
+        {
+          path: 'user/see/:id',
+          component: () => import('../pages/create-user.vue'),
+          props: route => ({ action: 'view', id: route.params.id }),
         },
       ],
     },

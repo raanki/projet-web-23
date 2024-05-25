@@ -3,6 +3,7 @@ import CustomList from '@/components/custom-list.vue'
 
 const admins = [
   {
+    id: 1,
     mail: 'hannah@example.com',
     firstname: 'Hannah',
     lastname: 'Montana',
@@ -10,6 +11,7 @@ const admins = [
     phone: '555-1000',
   },
   {
+    id: 2,
     mail: 'luke@example.com',
     firstname: 'Luke',
     lastname: 'Skywalker',
@@ -17,6 +19,7 @@ const admins = [
     phone: '555-2000',
   },
   {
+    id: 3,
     mail: 'diana@example.com',
     firstname: 'Diana',
     lastname: 'Prince',
@@ -24,6 +27,7 @@ const admins = [
     phone: '555-3000',
   },
   {
+    id: 4,
     mail: 'bruce@example.com',
     firstname: 'Bruce',
     lastname: 'Wayne',
@@ -31,6 +35,7 @@ const admins = [
     phone: '555-4000',
   },
   {
+    id: 5,
     mail: 'clark@example.com',
     firstname: 'Clark',
     lastname: 'Kent',
@@ -57,7 +62,7 @@ const fields = [
 
 
   <div class="row">
-    <custom-list :items="admins" :fields="fields" :title="'Admin 🧑‍⚖️'" />
+    <custom-list :items="admins" :fields="fields" :title="'Admin 🧑‍⚖️'" :type="'user'"/>
   </div>
 
 </template>
