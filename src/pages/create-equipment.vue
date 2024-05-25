@@ -18,7 +18,7 @@
 
       <!-- Prix d'achat -->
       <VCol cols="12" md="6">
-        <VTextField v-model="equipment.purchasePrice" label="Purchase Price" prefix="$" type="number" />
+        <VTextField v-model="equipment.purchasePrice" label="Purchase Price" prefix="€" type="number" />
       </VCol>
 
       <!-- Fournisseur -->

@@ -36,7 +36,6 @@ const fields = [
 </script>
 
 <template>
-  <div class="container">
 
 
     <div class="row text-end" style="margin: 30px">
@@ -48,7 +47,6 @@ const fields = [
       <custom-list :items="loans" :fields="fields" :title="'Loan'" />
     </div>
 
-  </div>
 </template>
 
 

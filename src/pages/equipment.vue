@@ -70,7 +70,23 @@ const fields = [
 </script>
 
 <template>
+
+  <div class="row text-end" style="margin: 30px">
+    <router-link to="/create-equipment" class="btn text-end add">Add an equipment</router-link>
+  </div>
+
+
   <div>
     <custom-list :items="equipment" :fields="fields" :title="'Equipement'" />
   </div>
 </template>
+
+<style>
+.add.btn {
+  color: #ffffff;
+  background-color: #6F72FF;
+  padding: 16px;
+  border-radius: 15px;
+  margin-bottom: 10px !important;
+}
+</style>
