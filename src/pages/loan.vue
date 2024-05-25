@@ -39,9 +39,10 @@ const fields = [
   <div class="container">
 
 
-    <div class="row  text-end" style="margin: 30px">
-        <a href="/create-loan" class="btn text-end add">Add a loan</a>
+    <div class="row text-end" style="margin: 30px">
+      <router-link to="/create-loan" class="btn text-end add">Add a loan</router-link>
     </div>
+
 
     <div class="row">
       <custom-list :items="loans" :fields="fields" :title="'Loan'" />
