@@ -1,5 +1,8 @@
 <template>
-  <VForm @submit.prevent="submitForm">
+
+  <span id="title">Create an Equipment 🖥</span>
+
+  <VForm @submit.prevent="submitForm" style="margin-top: 30px !important;">
     <VRow>
       <!-- Nom de l'équipement -->
       <VCol cols="12" md="6">
@@ -60,9 +63,9 @@ function submitForm() {
 
 <style scoped>
 #title {
-  font-size: 3rem;
+  font-size: 2rem;
   color: black;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 20px !important;
 }
 </style>
