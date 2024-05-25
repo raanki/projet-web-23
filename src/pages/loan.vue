@@ -25,20 +25,22 @@ const loans = [
   }
 ];
 
+
 const fields = [
-  { key: 'id', label: 'Id' },
-  { key: 'start_date', label: 'Start' },
-  { key: 'expect_end_date', label: 'End' },
-  { key: 'commentary', label: 'Commentary' },
-  { key: 'status', label: 'Status' },
+  { model: '', key: 'id', label: 'Id', placeholder: 'Enter ID', type: 'text' },
+  { model: '', key: 'start_date', label: 'Start Date', placeholder: 'YYYY-MM-DD', type: 'date' },
+  { model: '', key: 'expect_end_date', label: 'End Date', placeholder: 'YYYY-MM-DD', type: 'date' },
+  { model: '', key: 'commentary', label: 'Commentary', placeholder: 'Enter commentary', type: 'textarea' },
+  { model: '', key: 'status', label: 'Status', placeholder: 'Select status', type: 'select', options: ['Active', 'Completed', 'In Progress'] }
 ];
 </script>
 
 <template>
   <div class="container">
 
+
     <div class="row  text-end" style="margin: 30px">
-        <a href="" class="btn text-end add">Add a loan</a>
+        <a href="/create-loan" class="btn text-end add">Add a loan</a>
     </div>
 
     <div class="row">
