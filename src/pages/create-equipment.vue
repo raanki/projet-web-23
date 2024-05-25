@@ -35,7 +35,7 @@
       </VCol>
     </VRow>
 
-    <VRow class="d-flex gap-4">
+    <VRow class="d-flex gap-4" style="margin-top: 40px !important;">
       <VBtn type="submit">Submit</VBtn>
       <VBtn type="reset" color="secondary" variant="tonal">Reset</VBtn>
     </VRow>
@@ -64,7 +64,8 @@ function submitForm() {
 <style scoped>
 #title {
   font-size: 2rem;
-  color: black;
+  font-style: italic;
+  color: #6F72FF;
   font-weight: bold;
   margin-bottom: 20px !important;
 }

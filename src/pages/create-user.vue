@@ -1,5 +1,5 @@
 <template>
-  <span id="title">Create a User 👤</span>
+  <span id="title">Create an User 👤</span>
 
   <VForm @submit.prevent="submitForm" style="margin-top: 30px !important;">
     <VRow>
@@ -105,7 +105,8 @@ function onFileChange(e) {
 <style scoped>
 #title {
   font-size: 2rem;
-  color: black;
+  font-style: italic;
+  color: #6F72FF;
   font-weight: bold;
   margin-bottom: 20px !important;
 }
