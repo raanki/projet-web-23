@@ -76,7 +76,7 @@ const tabData = computed(() => {
       compareToLastWeek: '$28k',
     },
   }
-  
+
   return data[currentTab.value]
 })
 
@@ -85,7 +85,7 @@ const chartConfig = computed(() => {
   const variableTheme = vuetifyTheme.current.value.variables
   const disabledTextColor = `rgba(${ hexToRgb(String(currentTheme['on-surface'])) },${ variableTheme['disabled-opacity'] })`
   const borderColor = `rgba(${ hexToRgb(String(variableTheme['border-color'])) },${ variableTheme['border-opacity'] })`
-  
+
   return {
     chart: {
       parentHeightOffset: 0,

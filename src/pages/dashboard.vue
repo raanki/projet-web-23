@@ -21,57 +21,9 @@ import wallet from '@images/cards/wallet-info.png'
     <!-- 👉 Congratulations -->
     <VCol
       cols="12"
-      md="8"
     >
       <AnalyticsCongratulations />
     </VCol>
-
-    <VCol
-      cols="12"
-      sm="4"
-    >
-      <VRow>
-        <!-- 👉 Equipement -->
-        <VCol
-          cols="12"
-          md="6"
-        >
-          <CardStatisticsVertical
-            v-bind="{
-              title: 'Total Equipement',
-              image: chart,
-              stats: '7',
-              change:  null,
-            }"
-          />
-        </VCol>
-
-        <!-- 👉 Loan Weekly -->
-        <VCol
-          cols="12"
-          md="6"
-        >
-          <CardStatisticsVertical
-            v-bind="{
-              title: 'Week\'s Loans',
-              image: week_loans,
-              stats: '3',
-              change: null,
-            }"
-          />
-        </VCol>
-      </VRow>
-    </VCol>
-
-    <!-- 👉 Total Revenue -->
-<!--    <VCol-->
-<!--      cols="12"-->
-<!--      md="8"-->
-<!--      order="2"-->
-<!--      order-md="1"-->
-<!--    >-->
-<!--      <AnalyticsTotalRevenue />-->
-<!--    </VCol>-->
 
     <VCol
       cols="12"
@@ -81,7 +33,7 @@ import wallet from '@images/cards/wallet-info.png'
       order-md="2"
     >
       <VRow>
-        <!-- 👉 Payments -->
+        <!-- 👉 Student -->
         <VCol
           cols="12"
           sm="6"
@@ -96,7 +48,7 @@ import wallet from '@images/cards/wallet-info.png'
           />
         </VCol>
 
-        <!-- 👉 Revenue -->
+        <!-- 👉 Late Loans -->
         <VCol
           cols="12"
           sm="6"
@@ -111,14 +63,47 @@ import wallet from '@images/cards/wallet-info.png'
           />
         </VCol>
 
-        <!-- 👉 Latest Equipement loans -->
+        <!-- 👉 Total Equipement -->
         <VCol
           cols="12"
+          sm="6"
         >
-          <AnalyticsTransactions />
+          <CardStatisticsVertical
+            v-bind="{
+              title: 'Total Equipement',
+              image: chart,
+              stats: '7',
+              change:  null,
+            }"
+          />
+        </VCol>
+
+        <!-- 👉 Loan Weekly -->
+        <VCol
+          cols="12"
+          sm="6"
+        >
+          <CardStatisticsVertical
+            v-bind="{
+              title: 'Week\'s Loans',
+              image: week_loans,
+              stats: '3',
+              change: null,
+            }"
+          />
         </VCol>
       </VRow>
 
+    </VCol>
+
+    <!-- 👉 Latest Equipement loans -->
+    <VCol
+      cols="12"
+      md="4"
+      sm="6"
+      order="3"
+    >
+      <AnalyticsTransactions />
     </VCol>
 
     <!-- 👉 Loan Statistics -->
@@ -131,15 +116,17 @@ import wallet from '@images/cards/wallet-info.png'
       <AnalyticsOrderStatistics />
     </VCol>
 
-    <!-- 👉 Tabs chart -->
-    <VCol
-      cols="12"
-      md="4"
-      sm="6"
-      order="3"
-    >
-      <AnalyticsFinanceTabs />
-    </VCol>
+
+
+<!--    &lt;!&ndash; 👉 Tabs chart &ndash;&gt;-->
+<!--    <VCol-->
+<!--      cols="12"-->
+<!--      md="4"-->
+<!--      sm="6"-->
+<!--      order="3"-->
+<!--    >-->
+<!--      <AnalyticsFinanceTabs />-->
+<!--    </VCol>-->
 
   </VRow>
 </template>

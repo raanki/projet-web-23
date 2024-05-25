@@ -127,13 +127,6 @@ const upgradeBanner = computed(() => {
       />
       <VerticalNavLink
         :item="{
-          title: 'Tables',
-          icon: 'bx-table',
-          to: '/tables',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
           title: 'Form Layouts',
           icon: 'mdi-form-select',
           to: '/form-layouts',
