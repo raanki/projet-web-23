@@ -16,26 +16,18 @@ const illustrationJohn = computed(() => global.name.value === 'dark' ? illustrat
         order="2"
         order-sm="1"
       >
-        <VCardItem>
+        <VCardItem style="min-height: 130px !important;">
           <VCardTitle class="text-md-h5 text-primary">
-            Congratulations John! 🎉
+            Hello Yessi ! 🎉
           </VCardTitle>
         </VCardItem>
 
         <VCardText>
           <span>
-            You have done 72% 🤩 more sales today.
+            Here are the daily statistics 🤩.
             <br>
-            Check your new raising badge in your profile.
           </span>
           <br>
-          <VBtn
-            variant="tonal"
-            class="mt-4"
-            size="small"
-          >
-            View Badges
-          </VBtn>
         </VCardText>
       </VCol>
 

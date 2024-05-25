@@ -35,10 +35,10 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind="{
-              title: 'Profit',
+              title: 'Equipement',
               image: chart,
-              stats: '$12,628',
-              change: 72.80,
+              stats: '7',
+              change:  null,
             }"
           />
         </VCol>
@@ -50,10 +50,10 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind="{
-              title: 'Sales',
+              title: 'Loan',
               image: wallet,
-              stats: '$4,679',
-              change: 28.42,
+              stats: '3',
+              change: null,
             }"
           />
         </VCol>
@@ -61,14 +61,14 @@ import wallet from '@images/cards/wallet-info.png'
     </VCol>
 
     <!-- 👉 Total Revenue -->
-    <VCol
-      cols="12"
-      md="8"
-      order="2"
-      order-md="1"
-    >
-      <AnalyticsTotalRevenue />
-    </VCol>
+<!--    <VCol-->
+<!--      cols="12"-->
+<!--      md="8"-->
+<!--      order="2"-->
+<!--      order-md="1"-->
+<!--    >-->
+<!--      <AnalyticsTotalRevenue />-->
+<!--    </VCol>-->
 
     <VCol
       cols="12"
@@ -85,10 +85,10 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind=" {
-              title: 'Payments',
+              title: 'Students',
               image: paypal,
-              stats: '$2,468',
-              change: -14.82,
+              stats: '25',
+              change: null,
             }"
           />
         </VCol>
@@ -100,24 +100,22 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind="{
-              title: 'Transactions',
+              title: 'Late loan',
               image: card,
-              stats: '$14,857',
-              change: 28.14,
+              stats: '0',
+              change: null,
             }"
           />
         </VCol>
-      </VRow>
 
-      <VRow>
-        <!-- 👉 Profit Report -->
+        <!-- 👉 Latest Equipement loans -->
         <VCol
           cols="12"
-          sm="12"
         >
-          <AnalyticsProfitReport />
+          <AnalyticsTransactions />
         </VCol>
       </VRow>
+
     </VCol>
 
     <!-- 👉 Order Statistics -->
@@ -140,14 +138,5 @@ import wallet from '@images/cards/wallet-info.png'
       <AnalyticsFinanceTabs />
     </VCol>
 
-    <!-- 👉 Transactions -->
-    <VCol
-      cols="12"
-      md="4"
-      sm="6"
-      order="3"
-    >
-      <AnalyticsTransactions />
-    </VCol>
   </VRow>
 </template>
