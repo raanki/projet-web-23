@@ -35,7 +35,26 @@ const fields = [
 </script>
 
 <template>
-  <div>
-    <custom-list :items="loans" :fields="fields" :title="'Loan'" />
+  <div class="container">
+
+    <div class="row  text-end" style="margin: 30px">
+        <a href="" class="btn text-end add">Add a loan</a>
+    </div>
+
+    <div class="row">
+      <custom-list :items="loans" :fields="fields" :title="'Loan'" />
+    </div>
+
   </div>
 </template>
+
+
+<style>
+.add.btn {
+  color: #ffffff;
+  background-color: #6F72FF;
+  padding: 16px;
+  border-radius: 15px;
+  margin-bottom: 10px !important;
+}
+</style>
