@@ -66,6 +66,24 @@ const upgradeBanner = computed(() => {
         }"
       />
 
+      <VerticalNavLink
+        :item="{
+          title: 'Equipment',
+          icon: 'fa-solid fa-toolbox',
+          to: '/equipment',
+          isFontAwesome: true,
+        }"
+      />
+
+      <VerticalNavLink
+        :item="{
+          title: 'Loan',
+          icon: 'fa-solid fa-clipboard-list',
+          to: '/loan',
+          isFontAwesome: true,
+        }"
+      />
+
 <!--      &lt;!&ndash; 👉 Pages &ndash;&gt;-->
 <!--      <VerticalNavSectionTitle-->
 <!--        :item="{-->
