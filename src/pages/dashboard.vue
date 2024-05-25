@@ -57,7 +57,7 @@ import wallet from '@images/cards/wallet-info.png'
             v-bind="{
               title: 'Late Loans',
               image: late,
-              stats: '0',
+              stats: '2',
               change: null,
             }"
           />

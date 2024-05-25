@@ -120,13 +120,6 @@ const upgradeBanner = computed(() => {
       />
       <VerticalNavLink
         :item="{
-          title: 'Cards',
-          icon: 'bx-credit-card',
-          to: '/cards',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
           title: 'Form Layouts',
           icon: 'mdi-form-select',
           to: '/form-layouts',
