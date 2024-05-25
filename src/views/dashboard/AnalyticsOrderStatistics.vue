@@ -133,11 +133,7 @@ const moreList = [
         Most Popular Equipment Loans
       </VCardTitle>
 
-      <template #append>
-        <div class="me-n3 mt-n8">
-          <MoreBtn :menu-list="moreList" />
-        </div>
-      </template>
+
     </VCardItem>
 
     <VCardText>

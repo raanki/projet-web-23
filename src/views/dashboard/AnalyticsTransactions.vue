@@ -46,11 +46,6 @@ const moreList = [
 
 <template>
   <VCard title="Latest Equipment Loans">
-    <template #append>
-      <div class="me-n3 mt-n2">
-        <MoreBtn :menu-list="moreFilterList" />
-      </div>
-    </template>
 
     <VCardText>
       <VList class="loan-list">

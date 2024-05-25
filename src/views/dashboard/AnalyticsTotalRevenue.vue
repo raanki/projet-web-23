@@ -242,11 +242,7 @@ const balanceData = [
         <VCardItem class="pb-0">
           <VCardTitle>Total Revenue</VCardTitle>
 
-          <template #append>
-            <div class="me-n3">
-              <MoreBtn />
-            </div>
-          </template>
+
         </VCardItem>
 
         <!-- bar chart -->
