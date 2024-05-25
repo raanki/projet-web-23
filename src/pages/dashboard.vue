@@ -40,7 +40,7 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind=" {
-              title: 'Students',
+              title: 'Student',
               image: student,
               stats: '25',
               change: null,
