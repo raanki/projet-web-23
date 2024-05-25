@@ -52,7 +52,7 @@ const fields = [
 
 
   <div class="row text-end" style="margin: 30px">
-    <router-link to="/loan/create" class="btn text-end add">Add an admin ➕</router-link>
+    <router-link to="/user/create" class="btn text-end add">Add an admin ➕</router-link>
   </div>
 
 

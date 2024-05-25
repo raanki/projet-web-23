@@ -60,6 +60,10 @@ const router = createRouter({
           path: 'admin',
           component: () => import('../pages/admin.vue'),
         },
+        {
+          path: 'user/create',
+          component: () => import('../pages/create-user.vue'),
+        },
       ],
     },
     {
