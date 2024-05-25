@@ -66,33 +66,33 @@ const upgradeBanner = computed(() => {
         }"
       />
 
-      <!-- 👉 Pages -->
-      <VerticalNavSectionTitle
-        :item="{
-          heading: 'Pages',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Login',
-          icon: 'bx-log-in',
-          to: '/login',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Register',
-          icon: 'bx-user-plus',
-          to: '/register',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Error',
-          icon: 'bx-info-circle',
-          to: '/no-existence',
-        }"
-      />
+<!--      &lt;!&ndash; 👉 Pages &ndash;&gt;-->
+<!--      <VerticalNavSectionTitle-->
+<!--        :item="{-->
+<!--          heading: 'Pages',-->
+<!--        }"-->
+<!--      />-->
+<!--      <VerticalNavLink-->
+<!--        :item="{-->
+<!--          title: 'Login',-->
+<!--          icon: 'bx-log-in',-->
+<!--          to: '/login',-->
+<!--        }"-->
+<!--      />-->
+<!--      <VerticalNavLink-->
+<!--        :item="{-->
+<!--          title: 'Register',-->
+<!--          icon: 'bx-user-plus',-->
+<!--          to: '/register',-->
+<!--        }"-->
+<!--      />-->
+<!--      <VerticalNavLink-->
+<!--        :item="{-->
+<!--          title: 'Error',-->
+<!--          icon: 'bx-info-circle',-->
+<!--          to: '/no-existence',-->
+<!--        }"-->
+<!--      />-->
 
       <!-- 👉 User Interface -->
       <VerticalNavSectionTitle
