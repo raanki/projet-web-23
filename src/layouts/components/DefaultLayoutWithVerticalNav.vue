@@ -1,8 +1,6 @@
 <script setup>
 import { useTheme } from 'vuetify'
 import VerticalNavSectionTitle from '@/@layouts/components/VerticalNavSectionTitle.vue'
-import upgradeBannerDark from '@images/pro/upgrade-banner-dark.png'
-import upgradeBannerLight from '@images/pro/upgrade-banner-light.png'
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
 import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
 
@@ -43,20 +41,11 @@ const upgradeBanner = computed(() => {
 
           <span class="d-none d-md-flex align-center text-disabled">
             <span class="me-3">Search</span>
-            <span class="meta-key">&#8984;K</span>
           </span>
         </div>
 
         <VSpacer />
 
-        <IconBtn
-          class="me-2"
-          href="https://github.com/themeselection/sneat-vuetify-vuejs-admin-template-free"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <VIcon icon="bxl-github" />
-        </IconBtn>
 
         <IconBtn class="me-2">
           <VIcon icon="bx-bell" />
@@ -74,13 +63,6 @@ const upgradeBanner = computed(() => {
           title: 'Dashboard',
           icon: 'bx-home',
           to: '/dashboard',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Account Settings',
-          icon: 'mdi-account-cog-outline',
-          to: '/account-settings',
         }"
       />
 
@@ -120,20 +102,6 @@ const upgradeBanner = computed(() => {
       />
       <VerticalNavLink
         :item="{
-          title: 'Typography',
-          icon: 'mdi-alpha-t-box-outline',
-          to: '/typography',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Icons',
-          icon: 'bx-show',
-          to: '/icons',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
           title: 'Cards',
           icon: 'bx-credit-card',
           to: '/cards',
@@ -153,24 +121,6 @@ const upgradeBanner = computed(() => {
           to: '/form-layouts',
         }"
       />
-    </template>
-
-    <template #after-vertical-nav-items>
-      <!-- 👉 illustration -->
-      <a
-        href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template"
-        target="_blank"
-        rel="noopener noreferrer"
-        style="margin-left: 7px;"
-      >
-        <img
-          :src="upgradeBanner"
-          alt="upgrade-banner"
-          transition="scale-transition"
-          class="upgrade-banner mx-auto"
-          style="max-width: 230px;"
-        >
-      </a>
     </template>
 
     <!-- 👉 Pages -->

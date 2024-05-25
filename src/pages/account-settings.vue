@@ -19,11 +19,6 @@ const tabs = [
     icon: 'bx-lock-open',
     tab: 'security',
   },
-  {
-    title: 'Notifications',
-    icon: 'bx-bell',
-    tab: 'notification',
-  },
 ]
 </script>
 
