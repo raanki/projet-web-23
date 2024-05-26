@@ -1,70 +1,41 @@
 <script setup>
-import CustomList from '@/components/custom-list.vue'
+import { ref } from 'vue';
+import CustomList from '@/components/custom-list.vue';
+import { API_URL } from '/src/env';
 
-const admins = [
-  {
-    id: 1,
-    mail: 'hannah@example.com',
-    firstname: 'Hannah',
-    lastname: 'Montana',
-    address: '100 Mountain Drive, Denver, CO',
-    phone: '555-1000',
-  },
-  {
-    id: 2,
-    mail: 'luke@example.com',
-    firstname: 'Luke',
-    lastname: 'Skywalker',
-    address: '200 Star Park, San Diego, CA',
-    phone: '555-2000',
-  },
-  {
-    id: 3,
-    mail: 'diana@example.com',
-    firstname: 'Diana',
-    lastname: 'Prince',
-    address: '300 Palace Lane, Metropolis, IL',
-    phone: '555-3000',
-  },
-  {
-    id: 4,
-    mail: 'bruce@example.com',
-    firstname: 'Bruce',
-    lastname: 'Wayne',
-    address: '400 Bat Cave, Gotham, NJ',
-    phone: '555-4000',
-  },
-  {
-    id: 5,
-    mail: 'clark@example.com',
-    firstname: 'Clark',
-    lastname: 'Kent',
-    address: '500 Farm Avenue, Smallville, KS',
-    phone: '555-5000',
-  }
-];
+const admins = ref([]);
 
 const fields = [
-  { model: '', key: 'mail', label: 'Mail', },
-  { model: '', key: 'firstname', label: 'Firstname'},
+  { model: '', key: 'mail', label: 'Mail' },
+  { model: '', key: 'firstname', label: 'Firstname' },
   { model: '', key: 'lastname', label: 'Lastname' },
-  { model: '', key: 'address', label: 'Address', },
-  { model: '', key: 'phone', label: 'Phone', },
+  { model: '', key: 'address', label: 'Address' },
+  { model: '', key: 'phone', label: 'Phone' }
 ];
+
+async function fetchAdmins() {
+  try {
+    const response = await fetch(API_URL + 'api/user/?role=admin');
+    if (response.ok) {
+      admins.value = await response.json();
+    } else {
+      console.error('Failed to fetch admins');
+    }
+  } catch (error) {
+    console.error('Error fetching admins:', error);
+  }
+}
+
+fetchAdmins();
 </script>
-
 <template>
-
   <div class="row text-end" style="margin: 30px">
     <router-link to="/user/create" class="btn text-end add">Add an admin ➕</router-link>
   </div>
 
-
   <div class="row">
     <custom-list :items="admins" :fields="fields" :title="'Admin 🧑‍⚖️'" :type="'user'"/>
   </div>
-
-
 </template>
 
 <style>

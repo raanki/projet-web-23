@@ -40,7 +40,7 @@ export default {
     fetchHelloWorld() {
       console.log(process.env);
       fetch(API_URL + 'api/equipment', {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },

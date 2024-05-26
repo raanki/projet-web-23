@@ -30,17 +30,19 @@
 
       <!-- Admin -->
       <VCol cols="12" md="6">
-        <VSwitch v-model="user.isAdmin" label="Admin" @change="toggleStudentNumber" :disabled="isViewMode || isEditMode" />
+        <VSwitch v-model="user.isAdmin" label="Admin" @change="toggleStudentNumber"
+                 :disabled="isViewMode || isEditMode"/>
       </VCol>
 
       <!-- Student Number (conditionally shown) -->
       <VCol cols="12" md="6" v-if="!user.isAdmin">
-        <VTextField v-model="user.studentNumber" label="Student Number" placeholder="Enter student number" :disabled="isViewMode" />
+        <VTextField v-model="user.studentNumber" label="Student Number" placeholder="Enter student number"
+                    :disabled="isViewMode"/>
       </VCol>
 
       <!-- Avatar Image Upload -->
       <VCol cols="12">
-        <input type="file" @change="onFileChange" label="Avatar" :disabled="isViewMode" />
+        <input type="file" @change="onFileChange" label="Avatar" :disabled="isViewMode"/>
       </VCol>
     </VRow>
 
@@ -52,9 +54,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { VForm, VRow, VCol, VTextField, VSwitch, VBtn } from 'vuetify/components';
-import { defineProps } from 'vue';
+import {ref, onMounted} from 'vue';
+import {VForm, VRow, VCol, VTextField, VSwitch, VBtn} from 'vuetify/components';
+import {defineProps} from 'vue';
 
 const props = defineProps({
   action: String,
@@ -102,7 +104,7 @@ async function fetchUserById(id) {
         lastname: 'Doe',
         address: '123 Main St',
         phone: '123-456-7890',
-        isAdmin: false,
+        isAdmin: true,
         studentNumber: '12345',
         avatar: null
       });
@@ -141,7 +143,6 @@ function onFileChange(e) {
   }
 }
 </script>
-
 
 <style scoped>
 #title {
