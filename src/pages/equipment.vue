@@ -1,69 +1,6 @@
 <script setup>
 import CustomList from '@/components/custom-list.vue'
 
-const equipment = [
-  {
-    id: 1,
-    name: 'Laptop HP ProBook',
-    description: 'Laptop professionnel 15 pouces',
-    purchaseDate: '2023-01-15',
-    price: 1200,
-    supplier: 'HP Store',
-    loan: 'No loans currently',
-    availability: 'Available',
-  },
-  {
-    id: 2,
-    name: 'Projector Sony XZ2',
-    description: 'Full HD projector 1080p',
-    purchaseDate: '2023-02-20',
-    price: 890,
-    supplier: 'Sony Outlet',
-    loan: 'Loaned to Class A',
-    availability: 'Unavailable',
-  },
-  {
-    id: 3,
-    name: 'Laptop HP ProBook',
-    description: 'Laptop professionnel 15 pouces',
-    purchaseDate: '2023-01-15',
-    price: 1200,
-    supplier: 'HP Store',
-    loan: 'No loans currently',
-    availability: 'Available',
-  },
-  {
-    id: 4,
-    name: 'Projector Sony XZ2',
-    description: 'Full HD projector 1080p',
-    purchaseDate: '2023-02-20',
-    price: 890,
-    supplier: 'Sony Outlet',
-    loan: 'Loaned to Class A',
-    availability: 'Unavailable',
-  },
-  {
-    id: 5,
-    name: 'Laptop HP ProBook',
-    description: 'Laptop professionnel 15 pouces',
-    purchaseDate: '2023-01-15',
-    price: 1200,
-    supplier: 'HP Store',
-    loan: 'No loans currently',
-    availability: 'Available',
-  },
-  {
-    id: 6,
-    name: 'Projector Sony XZ2',
-    description: 'Full HD projector 1080p',
-    purchaseDate: '2023-02-20',
-    price: 890,
-    supplier: 'Sony Outlet',
-    loan: 'Loaned to Class A',
-    availability: 'Unavailable',
-  },
-]
-
 const fields = [
   { key: 'name', label: 'Name' },
   { key: 'description', label: 'Description' },
@@ -83,9 +20,40 @@ const fields = [
 
 
   <div>
-    <custom-list :items="equipment" :fields="fields" :title="'Equipement 🖥️'" :type="'equipment'"/>
+    <custom-list :items="equipments" :fields="fields" :title="'Equipement 🖥️'" :type="'equipment'"/>
   </div>
 </template>
+
+<script>
+
+export default {
+  data() {
+    return {
+      equipments: []
+    }
+  },
+  methods: {
+    fetchHelloWorld() {
+      fetch('http://localhost/api-projet-web/api/equipment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          this.equipments = data;
+          console.log(this.equipments);
+        })
+        .catch(error => console.error('Error:', error));
+    },
+  },
+  mounted() {
+    this.fetchHelloWorld();
+  }
+}
+
+</script>
 
 <style>
 .add.btn {

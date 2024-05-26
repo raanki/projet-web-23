@@ -55,7 +55,6 @@ const fields = [
 
 <template>
 
-
   <div class="row text-end" style="margin: 30px">
     <router-link to="/user/create" class="btn text-end add">Add an admin ➕</router-link>
   </div>
@@ -65,8 +64,8 @@ const fields = [
     <custom-list :items="admins" :fields="fields" :title="'Admin 🧑‍⚖️'" :type="'user'"/>
   </div>
 
-</template>
 
+</template>
 
 <style>
 .add.btn {
