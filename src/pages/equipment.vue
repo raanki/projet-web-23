@@ -1,15 +1,19 @@
 <script setup>
 import CustomList from '@/components/custom-list.vue'
+import { API_URL } from '/src/env'
 
 const fields = [
   { key: 'name', label: 'Name' },
   { key: 'description', label: 'Description' },
-  { key: 'purchaseDate', label: 'Purchase Date' },
-  { key: 'price', label: 'Price', formatter: value => `${value}€` },
+  { key: 'purchase_date', label: 'Purchase Date' },
+  { key: 'purchase_price', label: 'Price', formatter: value => `${value}€` },
   { key: 'supplier', label: 'Supplier' },
+  { key: 'status', label: 'status' },
   { key: 'loan', label: 'Loan' },
   { key: 'availability', label: 'Availability' },
 ]
+
+
 </script>
 
 <template>
@@ -34,7 +38,8 @@ export default {
   },
   methods: {
     fetchHelloWorld() {
-      fetch('http://localhost/api-projet-web/api/equipment', {
+      console.log(process.env);
+      fetch(API_URL + 'api/equipment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
