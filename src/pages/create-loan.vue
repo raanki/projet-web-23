@@ -2,25 +2,29 @@
   <span id="title">{{ formTitle }}</span>
   <VForm @submit.prevent="submitForm" style="margin-top: 30px !important;">
     <VRow>
-      <!-- Nom de l'emprunteur -->
+      <!-- Adresse email -->
       <VCol cols="12" md="6">
-        <VTextField v-model="loan.borrowerName" :label="labels.borrowerName" placeholder="Enter borrower's name" :disabled="isViewMode" />
-      </VCol>
-      <!-- Description du prêt -->
-      <VCol cols="12" md="6">
-        <VTextField v-model="loan.description" :label="labels.description" placeholder="Enter description" type="textarea" :disabled="isViewMode" />
+        <VTextField v-model="loan.mail" :label="labels.mail" placeholder="Enter borrower's email" :disabled="isViewMode" />
       </VCol>
       <!-- Date de début -->
       <VCol cols="12" md="6">
-        <VTextField v-model="loan.startDate" :label="labels.startDate" type="date" :disabled="isViewMode" />
+        <VTextField v-model="loan.start_date" :label="labels.startDate" type="date" :disabled="isViewMode" />
       </VCol>
-      <!-- Date de fin -->
+      <!-- Date de fin prévue -->
       <VCol cols="12" md="6">
-        <VTextField v-model="loan.endDate" :label="labels.endDate" type="date" :disabled="isViewMode" />
+        <VTextField v-model="loan.expect_end_date" :label="labels.expectEndDate" type="date" :disabled="isViewMode" />
       </VCol>
-      <!-- Montant -->
+      <!-- Date de fin réelle -->
       <VCol cols="12" md="6">
-        <VTextField v-model="loan.amount" :label="labels.amount" prefix="$" type="number" :disabled="isViewMode" />
+        <VTextField v-model="loan.actual_end_date" :label="labels.actualEndDate" type="date" :disabled="isViewMode" />
+      </VCol>
+      <!-- Commentaire -->
+      <VCol cols="12" md="6">
+        <VTextField v-model="loan.commentary" :label="labels.commentary" placeholder="Enter commentary" type="textarea" :disabled="isViewMode" />
+      </VCol>
+      <!-- Identifiant du matériel -->
+      <VCol cols="12" md="6">
+        <VTextField v-model="loan.material_id" :label="labels.materialId" type="number" :disabled="isViewMode" />
       </VCol>
     </VRow>
     <VRow class="d-flex gap-4" style="margin-top: 40px !important;">
@@ -35,6 +39,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { VForm, VRow, VCol, VTextField, VBtn } from 'vuetify/components'
 import { defineProps } from 'vue'
+import { API_URL } from '/src/env'
 
 const props = defineProps({
   action: String,
@@ -45,19 +50,22 @@ const route = useRoute()
 const router = useRouter()
 
 const loan = ref({
-  borrowerName: '',
-  description: '',
-  startDate: '',
-  endDate: '',
-  amount: ''
+  mail: '',
+  loan_id: '',
+  start_date: '',
+  expect_end_date: '',
+  actual_end_date: '',
+  commentary: '',
+  material_id: ''
 })
 
 const labels = {
-  borrowerName: 'Borrower Name',
-  description: 'Description',
+  mail: 'Email',
   startDate: 'Start Date',
-  endDate: 'End Date',
-  amount: 'Amount'
+  expectEndDate: 'Expected End Date',
+  actualEndDate: 'Actual End Date',
+  commentary: 'Commentary',
+  materialId: 'Material ID'
 }
 
 const formTitle = ref('')
@@ -79,24 +87,69 @@ onMounted(() => {
   }
 })
 
-function fetchLoanById(id) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        borrowerName: 'Sample Borrower',
-        description: 'Sample Description',
-        startDate: '2023-01-01',
-        endDate: '2023-12-31',
-        amount: 1000
-      })
-    }, 1000)
+async function fetchLoanById(id) {
+  try {
+    const response = await fetch(`${API_URL}api/loan`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'fetch',
+        id: id,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching loan:', error);
+    return {
+      mail: '',
+      loan_id: '',
+      start_date: '',
+      expect_end_date: '',
+      actual_end_date: '',
+      commentary: '',
+      material_id: ''
+    };
+  }
+}
+
+function createLoan(loanData) {
+  fetch(`${API_URL}api/loan`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      action: 'create',
+      ...loanData,
+    }),
   })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.text();
+    })
+    .then(text => {
+      try {
+        const data = JSON.parse(text);
+        console.log('Loan created:', data);
+        router.push('/loan');
+      } catch (err) {
+        console.error('Failed to parse JSON:', err, text);
+      }
+    })
+    .catch(error => console.error('Error:', error));
 }
 
 function submitForm() {
-  if (isViewMode.value) return
-  // Logique de soumission de formulaire
-  console.log("Loan submitted with:", loan.value)
+  if (isViewMode.value) return;
+  createLoan(loan.value);
 }
 </script>
 

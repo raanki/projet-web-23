@@ -32,6 +32,7 @@ const fields = [
 </template>
 
 <script>
+import { API_URL } from '/src/env'
 export default {
   data() {
     return {
@@ -49,7 +50,12 @@ export default {
       })
         .then(response => response.json())
         .then(data => {
-          this.loans = data;
+          this.loans = data.map(item => {
+            return {
+              ...item,
+              id: item.loan_id
+            }
+          });
           console.log(this.loans);
         })
         .catch(error => console.error('Error:', error));
@@ -59,6 +65,7 @@ export default {
     this.fetchLoans();
   }
 }
+
 </script>
 
 <style>
