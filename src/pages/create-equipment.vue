@@ -41,6 +41,8 @@ import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { VForm, VRow, VCol, VTextField, VSwitch, VBtn } from 'vuetify/components'
 import { defineProps } from 'vue'
+import { API_URL } from '/src/env'
+
 
 const props = defineProps({
   action: String,
@@ -87,25 +89,68 @@ onMounted(() => {
   }
 })
 
-function fetchEquipmentById(id) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        name: 'Sample Equipment',
-        description: 'Sample Description',
-        purchaseDate: '2023-01-01',
-        purchasePrice: 1000,
-        supplier: 'Sample Supplier',
-        availability: true
-      })
-    }, 1000)
+async function fetchEquipmentById(id) {
+  try {
+    const response = await fetch(`${API_URL}api/equipment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'fetch',
+        id: id,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching equipment:', error);
+    return {
+      name: '',
+      description: '',
+      purchaseDate: '',
+      purchasePrice: '',
+      supplier: '',
+      availability: false
+    };
+  }
+}
+
+function createEquipment(equipmentData) {
+  fetch(`${API_URL}api/equipment`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      action: 'create',
+      ...equipmentData,
+    }),
   })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.text();
+    })
+    .then(text => {
+      try {
+        const data = JSON.parse(text);
+        console.log('Equipment created:', data);
+        router.push('/equipment');
+      } catch (err) {
+        console.error('Failed to parse JSON:', err, text);
+      }
+    })
+    .catch(error => console.error('Error:', error));
 }
 
 function submitForm() {
-  if (isViewMode.value) return
-  // Logique de soumission de formulaire
-  console.log("Equipment submitted with:", equipment.value)
+  if (isViewMode.value) return;
+  createEquipment(equipment.value);
 }
 </script>
 
@@ -117,4 +162,5 @@ function submitForm() {
   font-weight: bold;
   margin-bottom: 20px !important;
 }
+
 </style>

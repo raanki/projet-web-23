@@ -40,6 +40,7 @@
 
 <script setup>
 import { defineProps, ref } from 'vue'
+import { API_URL } from '/src/env'
 
 const props = defineProps({
   items: Array,
@@ -54,12 +55,33 @@ let currentItemToDelete = null;
 function confirmDelete(item) {
   currentItemToDelete = item;
   dialogDelete.value = true;
+  deleteItem(item.id);
 }
 
-function deleteItem() {
-  console.log("Item supprimé :", currentItemToDelete);
-  dialogDelete.value = false;
+
+function deleteItem(id) {
+  fetch(`${API_URL}api/${props.type}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      action: 'delete',
+      id: id,
+    }),
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText)
+      }
+      return response.json()
+    })
+    .then(data => {
+      location.reload();
+    })
+    .catch(error => console.error('Error:', error))
 }
+
 </script>
 
 <style scoped>
