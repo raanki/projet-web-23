@@ -12,7 +12,7 @@
       <tbody>
       <tr v-for="item in props.items" :key="item.name">
         <td v-for="field in props.fields" :key="field.key">
-          {{ field.formatter ? field.formatter(item[field.key]) : item[field.key] }}
+          {{ field.formatter ? field.formatter(item[field.key]) : formatYNField(field.key, item[field.key]) }}
         </td>
         <td class="actions d-flex justify-content-between align-items-center">
           <router-link :to="`/${props.type}/see/${item.id}`" class="action see"><i class="fa-solid fa-eye"></i></router-link>
@@ -80,6 +80,14 @@ function deleteItem(id) {
       location.reload();
     })
     .catch(error => console.error('Error:', error))
+}
+
+function formatYNField(key, value) {
+
+  if (value === 1 || value === 0) {
+    return value === 1 ? 'yes' : 'no';
+  }
+  return value;
 }
 
 </script>
