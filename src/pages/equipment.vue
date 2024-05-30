@@ -8,8 +8,7 @@ const fields = [
   { key: 'purchase_date', label: 'Purchase Date' },
   { key: 'purchase_price', label: 'Price', formatter: value => `${value}€` },
   { key: 'supplier', label: 'Supplier' },
-  { key: 'status', label: 'status' },
-  { key: 'loan', label: 'Loan' },
+  // { key: 'status', label: 'status' },
   { key: 'availability', label: 'Availability' },
 ]
 
@@ -29,7 +28,6 @@ const fields = [
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -37,8 +35,7 @@ export default {
     }
   },
   methods: {
-    fetchHelloWorld() {
-      console.log(process.env);
+    fetchEquipments() {
       fetch(API_URL + 'api/equipment', {
         method: 'GET',
         headers: {
@@ -47,17 +44,21 @@ export default {
       })
         .then(response => response.json())
         .then(data => {
-          this.equipments = data;
+          this.equipments = data.map(item => {
+            return {
+              ...item,
+              id: item.material_id
+            }
+          });
           console.log(this.equipments);
         })
         .catch(error => console.error('Error:', error));
     },
   },
   mounted() {
-    this.fetchHelloWorld();
+    this.fetchEquipments();
   }
 }
-
 </script>
 
 <style>

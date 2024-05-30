@@ -30,5 +30,11 @@ dist-ssr
 *.sw?
 .yarn
 
+src/env.js
+*src/env.js*
+*.env.js
+*src/env.js
+*env*
+
 # iconify dist files
 src/@iconify/icons-bundle.js

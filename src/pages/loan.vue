@@ -7,14 +7,8 @@ const fields = [
   {model: '', key: 'start_date', label: 'Start Date', placeholder: 'YYYY-MM-DD', type: 'date'},
   {model: '', key: 'expect_end_date', label: 'End Date', placeholder: 'YYYY-MM-DD', type: 'date'},
   {model: '', key: 'commentary', label: 'Commentary', placeholder: 'Enter commentary', type: 'textarea'},
-  {
-    model: '',
-    key: 'status',
-    label: 'Status',
-    placeholder: 'Select status',
-    type: 'select',
-    options: ['Active', 'Completed', 'In Progress']
-  }
+  {model: '', key: 'mail', label: 'Student Mail', placeholder: 'Enter mail', type: 'textarea'},
+  {model: '', key: 'material_id', label: 'Equipment ID', placeholder: 'Enter equipment id', type: 'textarea'},
 ]
 
 </script>
@@ -32,6 +26,7 @@ const fields = [
 </template>
 
 <script>
+import { API_URL } from '/src/env'
 export default {
   data() {
     return {
@@ -49,7 +44,12 @@ export default {
       })
         .then(response => response.json())
         .then(data => {
-          this.loans = data;
+          this.loans = data.map(item => {
+            return {
+              ...item,
+              id: item.loan_id
+            }
+          });
           console.log(this.loans);
         })
         .catch(error => console.error('Error:', error));
@@ -59,6 +59,7 @@ export default {
     this.fetchLoans();
   }
 }
+
 </script>
 
 <style>

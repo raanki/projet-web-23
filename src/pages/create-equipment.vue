@@ -16,18 +16,17 @@
       </VCol>
       <!-- Prix d'achat -->
       <VCol cols="12" md="6">
-        <VTextField v-model="equipment.purchasePrice" :label="labels.purchasePrice" prefix="$" type="number"
-                    :disabled="isViewMode"/>
+        <VTextField v-model="equipment.purchasePrice" :label="labels.purchasePrice" prefix="$" type="number" :disabled="isViewMode"/>
       </VCol>
       <!-- Fournisseur -->
       <VCol cols="12" md="6">
-        <VTextField v-model="equipment.supplier" :label="labels.supplier" placeholder="Enter supplier name"
-                    :disabled="isViewMode"/>
+        <VTextField v-model="equipment.supplier" :label="labels.supplier" placeholder="Enter supplier name" :disabled="isViewMode"/>
       </VCol>
       <!-- Disponibilité -->
       <VCol cols="12" md="6">
         <VSwitch v-model="equipment.availability" :label="labels.availability" :disabled="isViewMode"/>
       </VCol>
+
     </VRow>
     <VRow class="d-flex gap-4" style="margin-top: 40px !important;">
       <VBtn v-if="!isViewMode" type="submit">Submit</VBtn>
@@ -41,6 +40,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { VForm, VRow, VCol, VTextField, VSwitch, VBtn } from 'vuetify/components'
 import { defineProps } from 'vue'
+import { API_URL } from '/src/env'
 
 const props = defineProps({
   action: String,
@@ -87,25 +87,103 @@ onMounted(() => {
   }
 })
 
-function fetchEquipmentById(id) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        name: 'Sample Equipment',
-        description: 'Sample Description',
-        purchaseDate: '2023-01-01',
-        purchasePrice: 1000,
-        supplier: 'Sample Supplier',
-        availability: true
-      })
-    }, 1000)
-  })
+async function fetchEquipmentById(id) {
+  try {
+    const response = await fetch(`${API_URL}api/equipment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'fetch',
+        id: id,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching equipment:', error);
+    return {
+      name: '',
+      description: '',
+      purchaseDate: '',
+      purchasePrice: '',
+      supplier: '',
+      availability: false
+    };
+  }
+}
+
+async function updateEquipment(equipmentData) {
+  try {
+    const response = await fetch(`${API_URL}api/equipment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'update',
+        ...equipmentData,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error updating equipment:', error);
+    return {
+      error: 'Failed to update equipment'
+    };
+  }
+}
+
+async function createEquipment(equipmentData) {
+  try {
+    const response = await fetch(`${API_URL}api/equipment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'create',
+        ...equipmentData,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+    const data = await response.text();
+    try {
+      const parsedData = JSON.parse(data);
+      console.log('Equipment created:', parsedData);
+      router.push('/equipment');
+    } catch (err) {
+      console.error('Failed to parse JSON:', err, data);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
 function submitForm() {
-  if (isViewMode.value) return
-  // Logique de soumission de formulaire
-  console.log("Equipment submitted with:", equipment.value)
+  if (isViewMode.value) return;
+
+  if (props.action === 'edit') {
+    updateEquipment(equipment.value).then(response => {
+      if (!response.error) {
+        router.push('/equipment');
+      } else {
+        console.error(response.error);
+      }
+    });
+  } else {
+    createEquipment(equipment.value);
+  }
 }
 </script>
 
