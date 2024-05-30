@@ -8,8 +8,7 @@ const fields = [
   { key: 'purchase_date', label: 'Purchase Date' },
   { key: 'purchase_price', label: 'Price', formatter: value => `${value}€` },
   { key: 'supplier', label: 'Supplier' },
-  { key: 'status', label: 'status' },
-  { key: 'loan', label: 'Loan' },
+  // { key: 'status', label: 'status' },
   { key: 'availability', label: 'Availability' },
 ]
 

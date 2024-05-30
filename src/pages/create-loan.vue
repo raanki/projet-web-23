@@ -15,7 +15,7 @@
         <VTextField v-model="loan.expect_end_date" :label="labels.expectEndDate" type="date" :disabled="isViewMode" />
       </VCol>
       <!-- Date de fin réelle -->
-      <VCol cols="12" md="6">
+      <VCol v-if="props.action === 'edit' || props.action === 'view'" cols="12" md="6">
         <VTextField v-model="loan.actual_end_date" :label="labels.actualEndDate" type="date" :disabled="isViewMode" />
       </VCol>
       <!-- Commentaire -->
@@ -77,11 +77,11 @@ onMounted(() => {
 
   if (action === 'edit') {
     formTitle.value = 'Edit Loan ✏️'
-    fetchLoanById(loanId).then(data => loan.value = data)
+    fetchLoanById(loanId).then(data => loan.value = formatLoanData(data))
   } else if (action === 'view') {
     formTitle.value = 'View Loan 👁️'
     isViewMode.value = true
-    fetchLoanById(loanId).then(data => loan.value = data)
+    fetchLoanById(loanId).then(data => loan.value = formatLoanData(data))
   } else {
     formTitle.value = 'Create a Loan 🤝'
   }
@@ -118,38 +118,89 @@ async function fetchLoanById(id) {
   }
 }
 
-function createLoan(loanData) {
-  fetch(`${API_URL}api/loan`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      action: 'create',
-      ...loanData,
-    }),
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-      }
-      return response.text();
-    })
-    .then(text => {
-      try {
-        const data = JSON.parse(text);
-        console.log('Loan created:', data);
-        router.push('/loan');
-      } catch (err) {
-        console.error('Failed to parse JSON:', err, text);
-      }
-    })
-    .catch(error => console.error('Error:', error));
+async function updateLoan(loanData) {
+  try {
+    const response = await fetch(`${API_URL}api/loan`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'update',
+        ...loanData,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error updating loan:', error);
+    return {
+      error: 'Failed to update loan'
+    };
+  }
+}
+
+async function createLoan(loanData) {
+  try {
+    const response = await fetch(`${API_URL}api/loan`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'create',
+        ...loanData,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+    const data = await response.text();
+    try {
+      const parsedData = JSON.parse(data);
+      console.log('Loan created:', parsedData);
+      router.push('/loan');
+    } catch (err) {
+      console.error('Failed to parse JSON:', err, data);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+function formatLoanData(data) {
+  return {
+    ...data,
+    start_date: formatDate(data.start_date),
+    expect_end_date: formatDate(data.expect_end_date),
+    actual_end_date: formatDate(data.actual_end_date),
+  }
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+
+  const [year, month, day] = dateStr.split(' ')[0].split('-');
+  return `${year}-${month}-${day}`; // Format YYYY-MM-DD for input[type="date"]
 }
 
 function submitForm() {
   if (isViewMode.value) return;
-  createLoan(loan.value);
+
+  if (props.action === 'edit') {
+    updateLoan(loan.value).then(response => {
+      if (!response.error) {
+        router.push('/loan');
+      } else {
+        console.error(response.error);
+      }
+    });
+  } else {
+    createLoan(loan.value);
+  }
 }
 </script>
 

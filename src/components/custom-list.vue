@@ -12,7 +12,7 @@
       <tbody>
       <tr v-for="item in props.items" :key="item.name">
         <td v-for="field in props.fields" :key="field.key">
-          {{ field.formatter ? field.formatter(item[field.key]) : formatYNField(field.key, item[field.key]) }}
+          {{ field.formatter ? field.formatter(item[field.key]) : formatField(field.key, item[field.key]) }}
         </td>
         <td class="actions d-flex justify-content-between align-items-center">
           <router-link :to="`/${props.type}/see/${item.id}`" class="action see"><i class="fa-solid fa-eye"></i></router-link>
@@ -48,6 +48,24 @@ const props = defineProps({
   title: String,
   type: String,
 })
+
+function formatField(key, value) {
+  if (value === 1 || value === 0) {
+    return value === 1 ? 'yes' : 'no';
+  }
+  if (key.slice(-4) === 'date') {
+    return formatDate(value);
+  }
+  return value;
+}
+
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
 
 const dialogDelete = ref(false);
 let currentItemToDelete = null;
