@@ -47,6 +47,7 @@ const router = createRouter({
         {
           path: 'loan/create',
           component: () => import('../pages/create-loan.vue'),
+          props: { action: 'create' },
         },
         {
           path: 'loan/see/:id',
