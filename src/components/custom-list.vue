@@ -80,7 +80,11 @@ function confirmDelete(item) {
 
 
 function deleteItem(id) {
-  fetch(`${API_URL}api/${props.type}`, {
+  var url = `${API_URL}api/${props.type}`;
+  if (props.type === "user") {
+    url = `${API_URL}api/${props.type}/`;
+  }
+  fetch(url, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
