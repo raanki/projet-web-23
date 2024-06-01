@@ -10,14 +10,25 @@ const fields = [
   { model: '', key: 'firstname', label: 'Firstname' },
   { model: '', key: 'lastname', label: 'Lastname' },
   { model: '', key: 'address', label: 'Address' },
-  { model: '', key: 'phone', label: 'Phone' }
+  { model: '', key: 'phone', label: 'Phone' },
+  { model: '', key: 'job', label: 'JOB' },
+  { model: '', key: 'birth_date', label: 'Birth Date' },
+
+
 ];
 
 async function fetchAdmins() {
   try {
     const response = await fetch(API_URL + 'api/user/?role=admin');
     if (response.ok) {
-      admins.value = await response.json();
+      const data = await response.json();
+      admins.value = data.map(item => {
+        return {
+          ...item,
+          id: item.mail
+        }
+      });
+      console.log(admins.value);
     } else {
       console.error('Failed to fetch admins');
     }

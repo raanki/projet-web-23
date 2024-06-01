@@ -18,6 +18,8 @@
           <router-link :to="`/${props.type}/see/${item.id}`" class="action see"><i class="fa-solid fa-eye"></i></router-link>
           <router-link :to="`/${props.type}/edit/${item.id}`" class="action edit"><i class="fa-solid fa-pen-to-square"></i></router-link>
           <a href="#" class="action delete" @click.prevent="confirmDelete(item)"><i class="fa-solid fa-trash"></i></a>
+          <a href="#" class="action barcode" @click.prevent="generateBarcode(item)"><i class="fa-solid fa-barcode"></i></a>
+
         </td>
       </tr>
       </tbody>
