@@ -18,8 +18,7 @@
           <router-link :to="`/${props.type}/see/${item.id}`" class="action see"><i class="fa-solid fa-eye"></i></router-link>
           <router-link :to="`/${props.type}/edit/${item.id}`" class="action edit"><i class="fa-solid fa-pen-to-square"></i></router-link>
           <a href="#" class="action delete" @click.prevent="confirmDelete(item)"><i class="fa-solid fa-trash"></i></a>
-          <a href="#" class="action barcode" @click.prevent="generateBarcode(item)"><i class="fa-solid fa-barcode"></i></a>
-
+          <router-link v-if="props.type === 'equipment'" :to="`/qr-code/${item.id}`" class="action qrcode"><i class="fa-solid fa-qrcode"></i></router-link>
         </td>
       </tr>
       </tbody>
@@ -39,10 +38,10 @@
   </VCard>
 </template>
 
-
 <script setup>
 import { defineProps, ref } from 'vue'
 import { API_URL } from '/src/env'
+import JsBarcode from 'jsbarcode';
 
 const props = defineProps({
   items: Array,
@@ -78,7 +77,6 @@ function confirmDelete(item) {
   deleteItem(item.id);
 }
 
-
 function deleteItem(id) {
   var url = `${API_URL}api/${props.type}`;
   if (props.type === "user") {
@@ -107,7 +105,6 @@ function deleteItem(id) {
 }
 
 function formatYNField(key, value) {
-
   if (value === 1 || value === 0) {
     return value === 1 ? 'yes' : 'no';
   }

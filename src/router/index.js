@@ -105,6 +105,11 @@ const router = createRouter({
           component: () => import('../pages/create-user.vue'),
           props: route => ({ action: 'view', id: route.params.id }),
         },
+        {
+          path: 'qr-code/:id',
+          component: () => import('../pages/qr-code.vue'),
+          props: route => ({ id: route.params.id }),
+        },
       ],
     },
     {
