@@ -1,6 +1,6 @@
 <template>
   <VCard>
-    <v-card-title class="title">BARCODE 𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</v-card-title>
+    <v-card-title class="title">BARCODE EQUIPMENT #{{ itemId }}  𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</v-card-title>
     <VTable>
       <div class="qrcode-container">
         <div class="qrcode">
@@ -12,10 +12,12 @@
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router';
 import { onMounted, onBeforeUnmount } from 'vue'
 import JsBarcode from 'jsbarcode'
 
-let itemId = '1' // Exemple de valeur à encoder dans le code-barres
+const route = useRoute();
+const itemId = route.params.id;
 
 function generateBarcode() {
   const formattedItemId = itemId.toString().padStart(8, '0');
@@ -76,4 +78,5 @@ onBeforeUnmount(() => {
   font-weight: bold;
 }
 </style>
+
 
