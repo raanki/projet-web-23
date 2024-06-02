@@ -1,35 +1,48 @@
-# vue
+# Vue 🖥️
 
-This template should help get you started developing with Vue 3 in Vite.
+Tutoriel pour run le projet.
 
-## Recommended IDE Setup
+## Configuration du projet 🛠️
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates.
-
-However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can run `Volar: Switch TS Plugin on/off` from VSCode command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
+Vous devez cloner l'API et la lancer sur un serveur :
 ```sh
-npm install
+git clone git@github.com:raanki/api-projet-web.git
 ```
 
-### Compile and Hot-Reload for Development
+
+Lancez l'API en créant un fichier env.local avec les informations suivantes :
+
 
 ```sh
-npm run dev
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=projet_web
+DB_USERNAME=root
+DB_PASSWORD=user
 ```
 
-### Type-Check, Compile and Minify for Production
+Ensuite, dans Vue, allez dans le fichier src/env.js et configurez le chemin jusqu'au projet :
 
 ```sh
-npm run build
+const API_URL = 'http://localhost/api-projet-web/';
 ```
+
+## Installer les dépendances 📦
+
+```
+yarn install
+```
+
+
+## Compiler et recharger à chaud pour le développement 🔄
+
+```sh
+yarn
+```
+
+```sh
+yarn dev
+```
+
+## Vérification de type, compilation et minification pour la production 🏗️

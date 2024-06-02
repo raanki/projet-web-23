@@ -96,7 +96,7 @@
           :disabled="isViewMode"
         />
       </VCol>
-      <!-- Avatar Image Upload -->
+<!--       Avatar Image Upload -->
       <VCol cols="12">
         <input
           type="file"
