@@ -113,6 +113,7 @@ const router = createRouter({
         },
         {
           path: 'search/:search',
+          name: 'search',
           component: () => import('../pages/search.vue'),
           props: route => ({ search: route.params.search }),
         },

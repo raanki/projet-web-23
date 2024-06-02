@@ -1,38 +1,25 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useTheme } from 'vuetify'
 import VerticalNavSectionTitle from '@/@layouts/components/VerticalNavSectionTitle.vue'
-import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
+import VerticalNavLayout from '@/@layouts/components/VerticalNavLayout.vue'
 import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
 import Footer from '@/layouts/components/Footer.vue'
 import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
 import UserProfile from '@/layouts/components/UserProfile.vue'
-import { API_URL } from '@/env'
 
 const vuetifyTheme = useTheme()
+const searchInput = ref('')
+const router = useRouter()
 
 const upgradeBanner = computed(() => {
   return vuetifyTheme.global.name.value === 'light' ? upgradeBannerLight : upgradeBannerDark
 })
 
-const searchInput = ref('')
 const performSearch = async () => {
   if (searchInput.value) {
-    try {
-      const response = await fetch(`${API_URL}api/search?search=${searchInput.value}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      if (!response.ok) {
-        throw new Error('Network response was not ok')
-      }
-      const data = await response.json()
-      console.log('Data fetched:', data)
-    } catch (error) {
-      console.error('Error fetching data:', error)
-    }
+    router.push({ name: 'search', params: { search: searchInput.value } })
   } else {
     console.log('Search input is empty')
   }
