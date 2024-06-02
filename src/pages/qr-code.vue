@@ -1,6 +1,9 @@
 <template>
   <VCard>
     <v-card-title class="title">BARCODE EQUIPMENT #{{ itemId }}  𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</v-card-title>
+    <div class="button-container">
+      <button @click="printBarcode">Imprimer le QR code</button>
+    </div>
     <VTable>
       <div class="qrcode-container">
         <div class="qrcode">
@@ -24,7 +27,6 @@ function generateBarcode() {
 
   const screenWidth = window.innerWidth;
 
-  // Ajuster la taille du QR code en fonction de la taille de l'écran
   let width, height, fontSize;
   if (screenWidth < 600) {
     width = 2;
@@ -47,6 +49,16 @@ function generateBarcode() {
     height: height,
     fontSize: fontSize,
   });
+}
+
+function printBarcode() {
+  const printContents = document.querySelector('.qrcode-container').innerHTML;
+  const originalContents = document.body.innerHTML;
+
+  document.body.innerHTML = `<div class="print-container" style="position: absolute; top: 400px; left: 150px">${printContents}</div>`;
+  window.print();
+  document.body.innerHTML = originalContents;
+  window.location.reload();
 }
 
 onMounted(() => {
@@ -77,6 +89,23 @@ onBeforeUnmount(() => {
   margin-bottom: 20px;
   font-weight: bold;
 }
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Styles pour l'impression */
+.print-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Hauteur complète de la page */
+}
 </style>
-
-
