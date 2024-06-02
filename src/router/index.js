@@ -111,6 +111,11 @@ const router = createRouter({
           component: () => import('../pages/qr-code.vue'),
           props: route => ({ id: route.params.id }),
         },
+        {
+          path: 'search/:search',
+          component: () => import('../pages/search.vue'),
+          props: route => ({ search: route.params.search }),
+        },
       ],
     },
     {
