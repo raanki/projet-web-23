@@ -2,8 +2,13 @@
 import walletPrimary from '@images/cards/wallet-primary.png'
 import { ref, onMounted } from 'vue'
 import { API_URL } from '/src/env'
+import dayjs from 'dayjs'
 
 const latestEquipmentLoans = ref([])
+
+const formatDate = (dateStr) => {
+  return dayjs(dateStr).format('DD/MM/YYYY')
+}
 
 const fetchData = async () => {
   try {
@@ -35,7 +40,7 @@ onMounted(() => {
               rounded
               variant="tonal"
               :color="loan.expect_end_date < loan.actual_end_date ? 'error' : 'success'"
-              :image= "walletPrimary"
+              :image="walletPrimary"
               class="me-3"
             />
           </template>
@@ -43,7 +48,7 @@ onMounted(() => {
             {{ loan.student_name }} - {{ loan.equipment_name }}
           </VListItemSubtitle>
           <VListItemTitle>
-            Start: {{ loan.start_date }} | Due: {{ loan.expect_end_date }}
+            Start: {{ formatDate(loan.start_date) }} | Due: {{ formatDate(loan.expect_end_date) }}
           </VListItemTitle>
           <template #append>
             <VListItemAction>
