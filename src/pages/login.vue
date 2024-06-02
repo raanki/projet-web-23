@@ -47,9 +47,13 @@ async function submitForm() {
       body: JSON.stringify(form.value),
     })
     const result = await response.json()
+    console.log("result ", result);
+    console.log("result.status ", result.status);
     if (result.status === 'success') {
+      console.log('Login successful:', result.user) // Vérifiez que cette ligne est atteinte
       store.dispatch('login', result.user)
-      router.push('/')
+      console.log(store.state.user) // Vérifiez que l'utilisateur est bien stocké dans Vuex
+      await router.push('/')
     } else {
       errorMessage.value = result.message
       console.error('Login failed:', result.message)
@@ -70,11 +74,11 @@ async function submitForm() {
             <div class="d-flex text-primary" v-html="logo"/>
           </div>
         </template>
-        <VCardTitle class="text-2xl font-weight-bold">sneat</VCardTitle>
+        <VCardTitle class="text-2xl font-weight-bold">EFREI</VCardTitle>
       </VCardItem>
 
       <VCardText class="pt-2">
-        <h5 class="text-h5 mb-1">Welcome to sneat! 👋🏻</h5>
+        <h5 class="text-h5 mb-1">Welcome ! 👋🏻</h5>
         <p class="mb-0">Please sign-in to your account and start the adventure</p>
       </VCardText>
 

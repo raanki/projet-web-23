@@ -96,24 +96,34 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-    if (to.meta.requiresAuth && to.path !== '/login') {
-        try {
-            const response = await axios.get(`${API_URL}api/check-auth`, { withCredentials: true })
-            if (response.data.status === 'success') {
-                store.commit('SET_USER', response.data.user)
-                next()
-            } else {
-                store.commit('LOGOUT')
-                next('/login')
-            }
-        } catch (error) {
-            store.commit('LOGOUT')
-            next('/login')
-        }
+  console.log(`Navigating to ${to.path}`)
+  if (to.meta.requiresAuth && to.path !== '/login') {
+    console.log('Requires auth, checking...')
+    if (store.getters.isAuthenticated) {
+      console.log('User is authenticated in store')
+      next()
     } else {
-        next()
+      try {
+        const response = await axios.get(`${API_URL}api/check-auth`, { withCredentials: true })
+        console.log(response.data)
+        if (response.data.status === 'success') {
+          store.commit('SET_USER', response.data.user)
+          next()
+        } else {
+          store.commit('LOGOUT')
+          next('/login')
+        }
+      } catch (error) {
+        console.error('Auth check error:', error)
+        store.commit('LOGOUT')
+        next('/login')
+      }
     }
+  } else {
+    next()
+  }
 })
+
 
 
 export default router
