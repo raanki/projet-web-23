@@ -76,6 +76,12 @@ const routes = [
                 component: () => import('../pages/qr-code.vue'),
                 props: route => ({ id: route.params.id }),
             },
+            {
+              path: 'search/:search',
+              name: 'search',
+              component: () => import('../pages/search.vue'),
+              props: route => ({ search: route.params.search }),
+            },
         ],
         meta: { requiresAuth: true }
     },
