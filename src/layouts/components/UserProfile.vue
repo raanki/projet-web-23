@@ -1,5 +1,6 @@
 <script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
+import user from '@images/avatars/user.png'
 import store from "@/store"
 </script>
 
@@ -17,7 +18,7 @@ import store from "@/store"
       color="primary"
       variant="tonal"
     >
-      <VImg :src="avatar1" />
+      <VImg :src="user" />
 
       <!-- SECTION Menu -->
       <VMenu
@@ -42,7 +43,7 @@ import store from "@/store"
                     color="primary"
                     variant="tonal"
                   >
-                    <VImg :src="avatar1" />
+                    <VImg :src="user" />
                   </VAvatar>
                 </VBadge>
               </VListItemAction>
