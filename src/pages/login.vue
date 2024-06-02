@@ -1,41 +1,41 @@
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { API_URL } from '/src/env';
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import { API_URL } from '/src/env'
 
-const router = useRouter();
+const router = useRouter()
+const store = useStore()
 
 const form = ref({
   mail: '',
   password: '',
   remember: false,
-});
+})
 
-const isPasswordVisible = ref(false);
-const errorMessage = ref(''); // Propriété pour stocker le message d'erreur général
+const isPasswordVisible = ref(false)
+const errorMessage = ref('')
 const fieldErrors = ref({
   mail: '',
   password: '',
-}); // Propriété pour stocker les erreurs spécifiques aux champs
+})
 
 async function submitForm() {
-  // Réinitialiser les messages d'erreur
-  errorMessage.value = '';
+  errorMessage.value = ''
   fieldErrors.value = {
     mail: '',
     password: '',
-  };
+  }
 
-  // Vérifier si les champs sont remplis
   if (!form.value.mail) {
-    fieldErrors.value.mail = 'Please complete the email field.';
+    fieldErrors.value.mail = 'Please complete the email field.'
   }
   if (!form.value.password) {
-    fieldErrors.value.password = 'Please complete the password field.';
+    fieldErrors.value.password = 'Please complete the password field.'
   }
 
   if (fieldErrors.value.mail || fieldErrors.value.password) {
-    return;
+    return
   }
 
   try {
@@ -45,21 +45,22 @@ async function submitForm() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(form.value),
-    });
-    const result = await response.json();
+    })
+    const result = await response.json()
     if (result.status === 'success') {
-      // Rediriger l'utilisateur après une connexion réussie
-      router.push('/');
+      store.dispatch('login', result.user)
+      router.push('/')
     } else {
-      errorMessage.value = result.message;
-      console.error('Login failed:', result.message);
+      errorMessage.value = result.message
+      console.error('Login failed:', result.message)
     }
   } catch (error) {
-    errorMessage.value = 'An error occurred during login.'; // Définir un message d'erreur générique
-    console.error('Error during login:', error);
+    errorMessage.value = 'An error occurred during login.'
+    console.error('Error during login:', error)
   }
 }
 </script>
+
 <template>
   <div class="auth-wrapper d-flex align-center justify-center pa-4">
     <VCard class="auth-card pa-4 pt-7" max-width="448">

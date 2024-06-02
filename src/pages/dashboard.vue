@@ -24,7 +24,7 @@ const popularEquipmentLoans = ref([])
 // Fonction pour récupérer les données du backend
 const fetchData = async () => {
   try {
-    const response = await fetch(API_URL + 'api/dashboard')
+    const response = await fetch(API_URL + 'api/dashboard');
     const data = await response.json()
 
     numberOfStudents.value = data.numberOfStudents
