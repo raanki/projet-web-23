@@ -21,13 +21,7 @@ const upgradeBanner = computed(() => {
     <!-- 👉 navbar -->
     <template #navbar="{ toggleVerticalOverlayNavActive }">
       <div class="d-flex h-100 align-center">
-        <!-- 👉 Vertical nav toggle in overlay mode -->
-        <IconBtn
-          class="ms-n3 d-lg-none"
-          @click="toggleVerticalOverlayNavActive(true)"
-        >
-          <VIcon icon="bx-menu" />
-        </IconBtn>
+
 
         <!-- 👉 Search -->
         <div
@@ -45,11 +39,6 @@ const upgradeBanner = computed(() => {
         </div>
 
         <VSpacer />
-
-
-        <IconBtn class="me-2">
-          <VIcon icon="bx-bell" />
-        </IconBtn>
 
         <NavbarThemeSwitcher class="me-2" />
 
