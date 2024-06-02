@@ -5,26 +5,13 @@ import {useTheme} from 'vuetify';
 import illustrationJohnDark from '@images/cards/illustration-john-dark.png';
 import illustrationJohnLight from '@images/cards/illustration-john-light.png';
 import {API_URL} from '/src/env';
+import store from "@/store"
 
 const {global} = useTheme();
 const illustrationJohn = computed(() => global.name.value === 'dark' ? illustrationJohnDark : illustrationJohnLight);
 
 const user = ref({});
 
-onMounted(async () => {
-  try {
-    const response = await axios.get(`${API_URL}api/check-auth`);
-    if (response.data.status === 'success') {
-      user.value = response.data.user;
-    } else {
-      // Rediriger vers la page de login si non authentifié
-      router.push('/login');
-    }
-  } catch (error) {
-    console.error('Failed to fetch user:', error);
-    router.push('/login');
-  }
-});
 </script>
 
 <template>
@@ -33,7 +20,7 @@ onMounted(async () => {
       <VCol cols="12" sm="8" order="2" order-sm="1">
         <VCardItem style="min-height: 130px !important;">
           <VCardTitle class="text-md-h5 text-primary">
-            Hello {{ user.firstname }}! 🎉
+            Hello {{ store.state.user.firstname }}! 🎉
           </VCardTitle>
         </VCardItem>
         <VCardText>

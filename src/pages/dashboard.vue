@@ -21,6 +21,7 @@ const weekLoans = ref(0)
 const latestEquipmentLoans = ref([])
 const popularEquipmentLoans = ref([])
 
+
 // Fonction pour récupérer les données du backend
 const fetchData = async () => {
   try {

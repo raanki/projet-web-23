@@ -1,5 +1,6 @@
 <script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
+import store from "@/store"
 </script>
 
 <template>
@@ -48,7 +49,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
             </template>
 
             <VListItemTitle class="font-weight-semibold">
-              Yessi Racerlyn
+              {{ store.state.user.firstname }} {{ store.state.user.lastname }}
             </VListItemTitle>
             <VListItemSubtitle>Admin</VListItemSubtitle>
           </VListItem>
