@@ -85,6 +85,7 @@
           label="Admin"
           @change="toggleStudentNumber"
           :disabled="isViewMode || isEditMode"
+          :rules="[v => v !== null || 'Admin field is required']"
         />
       </VCol>
       <!-- Student Number (conditionally shown) -->
@@ -138,7 +139,7 @@ const user = ref({
   phone: '',
   job: '',
   birth_date: '',
-  isAdmin: false,
+  isAdmin: null,
   avatar: null,
 });
 
@@ -192,7 +193,7 @@ async function fetchUserById(id) {
       phone: '',
       job: '',
       birth_date: '',
-      isAdmin: false,
+      isAdmin: null,
       avatar: null,
     };
   }
@@ -224,6 +225,7 @@ async function updateUser(userData) {
 }
 
 async function createUser(userData) {
+  console.log("user");
   try {
     const response = await fetch(`${API_URL}api/user/`, {
       method: 'POST',
@@ -253,20 +255,38 @@ async function createUser(userData) {
 }
 
 function submitForm() {
+  console.log("1");
   if (isViewMode.value) return;
-
+  console.log("2");
   let isValid = true;
 
   // Check each field for validity
   if (!user.value.mail) isValid = false;
+  console.log("1 isValid", isValid);
+
   if (!user.value.firstname) isValid = false;
+  console.log("2 isValid", isValid);
+
   if (!user.value.lastname) isValid = false;
+  console.log("3 isValid", isValid);
+
   if (!user.value.address) isValid = false;
+  console.log("4 isValid", isValid);
+
   if (!user.value.phone) isValid = false;
+  console.log("5 isValid", isValid);
+
   if (!user.value.job) isValid = false;
+  console.log("6 isValid", isValid);
+
   if (!user.value.birth_date) isValid = false;
+  console.log("7 isValid", isValid);
+
+  if (user.value.isAdmin === null) user.value.isAdmin = false;
 
   if (!isValid) return;
+
+  console.log("3");
 
   if (props.action === 'edit') {
     updateUser(user.value).then(response => {
@@ -299,6 +319,7 @@ function onFileChange(e) {
   }
 }
 </script>
+
 
 <style scoped>
 #title {
